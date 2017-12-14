@@ -542,6 +542,7 @@ namespace MonoDevelop.Profiler
 				TimeDiff = reader.ReadULeb128 ();
 			} else if (exinfo == TYPE_HEAP_ROOT) {
 				Type = EventType.Root;
+				TimeDiff = reader.ReadULeb128();
 				ulong nroots = reader.ReadULeb128 ();
 				reader.ReadULeb128 (); // gcs
 				RootRefs = new long [nroots];
@@ -554,6 +555,7 @@ namespace MonoDevelop.Profiler
 				}
 			} else if (exinfo == TYPE_HEAP_OBJECT) {
 				Type = EventType.Object;
+				TimeDiff = reader.ReadULeb128();
 				Object = reader.ReadSLeb128 ();
 				Class = reader.ReadSLeb128 ();
 				Size = reader.ReadULeb128 ();
